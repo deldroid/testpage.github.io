@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Squeezed Text</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
     <style>
         :root {
             --color-bg-2: #2B2B2C;
@@ -83,6 +84,15 @@
         document.getElementById("visible1").textContent = vis1;
         document.getElementById("invisible").textContent = inv;
         document.getElementById("visible2").textContent = vis2;
+
+        // Function to clear selection
+        function clearSelection() {
+            const selection = window.getSelection();
+            if (selection) selection.removeAllRanges();
+        }
+
+        // Detect when the iframe loses focus and clear selection
+        window.addEventListener("blur", clearSelection);
     </script>
 </body>
 </html>
