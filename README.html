@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Squeezed Text</title>
+    <style>
+        .container {
+            display: inline-flex;
+            white-space: nowrap;
+        }
+        .squeezed-text {
+            display: inline-block;
+            transform: scaleX(0); /* Collapse the text to have zero width */
+            width: 0; /* Ensure the width is zero */
+        }
+        .normal-text {
+            display: inline;
+            white-space: pre;
+        }
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span class="normal-text" id="normal1"></span>
+        <span class="squeezed-text" id="short"></span>
+        <span class="normal-text" id="normal2"></span>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const norm1 = params.get("norm1") || "";
+        const shr = params.get("shr") || "";
+        const norm2 = params.get("norm2") || "";
+
+        document.getElementById("normal1").textContent = norm1;
+        document.getElementById("short").textContent = shr;
+        document.getElementById("normal2").textContent = norm2;
+    </script>
+</body>
+</html>
