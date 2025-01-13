@@ -3,32 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400&display=swap" rel="stylesheet">
 
     <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-            font-family: 'Fira Code', monospace;
-        }
-
         .widget {
-            margin: 0 auto 0.882em;
-            padding: 0.5em;
+            display: block;
+            min-width: 0;
             max-width: auto;
+            margin: 0 auto 0.882353em;
             min-height: 1.5em;
-            background-color: #2B2B2C;
-            color: #EBEBEB;
-            border-radius: 0.5em;
-            font-size: 0.94em;
-            line-height: 1.5;
-            text-align: left;
+            padding: 0.5em;
             box-sizing: border-box;
+            border-radius: 0.5em;
             overflow: auto;
-            white-space: pre-wrap;
+            background-color: #2B2B2C;
+            font-family: 'Fira Code', SFMono-Regular, Consolas, 'Liberation Mono', Menlo, Monaco, Courier, monospace;
+            font-stretch: normal;
+            font-weight: 400;
+            font-style: normal;
+            letter-spacing: normal;
+            font-feature-settings: "ss01" off, "ss02" off, "ss03" off, "ss04" on, "ss05" off, "ss06" on, "ss07" off, "zero" off, "onum" off;
+            font-size: 0.94em;
+            color:  #EBEBEB;
+            line-height: 1.5em;
+            text-align: left;
+            word-spacing: normal;
+            word-break: normal;
+            word-wrap: normal;
+            -moz-tab-size: 4;
+            tab-size: 4;
+            -webkit-hyphens: none;
+            -moz-hyphens: none;
+            hyphens: none;
         }
 
         .container {
+            display: inline;
             white-space: nowrap;
         }
 
@@ -40,26 +51,37 @@
 
         .norm {
             display: inline;
+            white-space: pre;
+        }
+        body {
+            margin: 0;
+            overflow: hidden;
         }
     </style>
 </head>
 <body>
     <div class="widget">
         <div class="container">
-            <span class="norm" id="visible1"></span>
-            <span class="squeez" id="invisible"></span>
-            <span class="norm" id="visible2"></span>
+            <span class="norm" id="visible1"></span><span class="squeez" id="invisible"></span><span class="norm" id="visible2"></span>
         </div>
     </div>
 
     <script>
         const params = new URLSearchParams(window.location.search);
+        const vis1 = params.get("vis1") || "";
+        const inv = params.get("inv") || "";
+        const vis2 = params.get("vis2") || "";
 
-        document.getElementById("visible1").textContent = params.get("vis1") || "";
-        document.getElementById("invisible").textContent = params.get("inv") || "";
-        document.getElementById("visible2").textContent = params.get("vis2") || "";
+        document.getElementById("visible1").textContent = vis1;
+        document.getElementById("invisible").textContent = inv;
+        document.getElementById("visible2").textContent = vis2;
+        
+        function clearSelection() {
+            const selection = window.getSelection();
+            if (selection) selection.removeAllRanges();
+        }
 
-        window.addEventListener("blur", () => window.getSelection()?.removeAllRanges());
+        window.addEventListener("blur", clearSelection);
     </script>
 </body>
 </html>
