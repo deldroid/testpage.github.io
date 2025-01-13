@@ -4,18 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400&display=swap" rel="stylesheet">
 
     <style>
-
-        @font-face {
-          font-family: 'Fira Code';
-          font-style: normal;
-          font-weight: 400;
-          font-display: swap;
-          src: url('https://fonts.gstatic.com/s/firacode/v22/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2') format('woff2');
-        }
-        
         :root {
             --color-bg-2: #2B2B2C;
             --color-primary: #EBEBEB;
@@ -58,13 +49,13 @@
             white-space: nowrap;
         }
 
-        .squeezed-text {
+        .squeez {
             display: inline-block;
-            transform: scaleX(0); /* Collapse the text to have zero width */
-            width: 0; /* Ensure the width is zero */
+            transform: scaleX(0);
+            width: 0;
         }
 
-        .normal-text {
+        .norm {
             display: inline;
             white-space: pre;
         }
@@ -77,29 +68,25 @@
 <body>
     <div class="widget">
         <div class="container">
-            <span class="normal-text" id="visible1"></span><span class="squeezed-text" id="invisible"></span><span class="normal-text" id="visible2"></span>
+            <span class="normal-text" id="visible1"></span><span class="squeez" id="invisible"></span><span class="norm" id="visible2"></span>
         </div>
     </div>
 
     <script>
-        // Parse query parameters from the URL
         const params = new URLSearchParams(window.location.search);
         const vis1 = params.get("vis1") || "";
         const inv = params.get("inv") || "";
         const vis2 = params.get("vis2") || "";
 
-        // Update the text dynamically
         document.getElementById("visible1").textContent = vis1;
         document.getElementById("invisible").textContent = inv;
         document.getElementById("visible2").textContent = vis2;
-
-        // Function to clear selection
+        
         function clearSelection() {
             const selection = window.getSelection();
             if (selection) selection.removeAllRanges();
         }
 
-        // Detect when the iframe loses focus and clear selection
         window.addEventListener("blur", clearSelection);
     </script>
 </body>
