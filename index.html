@@ -36,12 +36,12 @@
             hyphens: none;
         }
 
-        .widget.dark { /* Dark theme for widget */
+        .widget.dark {
             background-color: #2B2B2C;
             color: #EBEBEB;
         }
     
-        .widget.light { /* Light theme for widget*/
+        .widget.light {
             background-color: #F6F6F6;
             color: black;
         }
@@ -96,8 +96,12 @@
         }
 
         const prefersColorScheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        const widgetElement = document.querySelector('.widget'); // Select the widget
-        setThemeClass(widgetElement, prefersColorScheme); // Apply to the widget
+        const widgetElement = document.querySelector('.widget');
+        setThemeClass(widgetElement, prefersColorScheme);
+
+        if (window.matchMedia("(pointer: coarse)").matches) {
+            document.getElementById("invisible").classList.add("hide-on-mobile");
+        }
     </script>
 </body>
 </html>
